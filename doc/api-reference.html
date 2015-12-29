@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.11.2">
+    <title>API Reference – thalamex v0.0.1</title>
+    <link rel="stylesheet" href="dist/app-feafe9a25b.css" />
+    <script src="dist/sidebar_items.js"></script>
+  </head>
+  <body data-type="extras">
+
+<div class="main">
+<button class="sidebar-toggle">
+  <i class="icon-menu"></i>
+</button>
+<section class="sidebar">
+  <button class="sidebar-toggle">
+    <i class="icon-menu"></i>
+  </button>
+
+  
+  <a href="api-reference.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+        thalamex
+      </h1>
+      <h2 class="sidebar-projectVersion">
+        v0.0.1
+      </h2>
+    </div>
+    
+  </a>
+
+  <div class="sidebar-search">
+    <i class="icon-search"></i>
+    <input type="text" class="sidebar-searchInput" placeholder="search" autocomplete="off" />
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+    
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+    
+
+    
+
+    
+  </ul>
+
+  <ul id="full-list" class="sidebar-fullList"></ul>
+  <div class="sidebar-noResults"></div>
+</section>
+
+<section class="content">
+  <div id="content" class="content-inner">
+
+  <h1>
+    <small class="visible-xs">thalamex v0.0.1</small>
+    API Reference
+  </h1>
+
+  <ul class="summary-links">
+    
+      <li><a href="#modules">Modules</a></li>
+    
+    
+    
+  </ul>
+
+  
+    <section id="modules" class="details-list">
+      <h1 class="section-heading">Modules</h1>
+      <div class="summary">
+        <div class="summary-row">
+  <div class="summary-signature"><a href="Thalamex.html">Thalamex</a></div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature"><a href="Thalamex.Thing.Backend.html">Thalamex.Thing.Backend</a></div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature"><a href="Thalamex.Thing.Code.html">Thalamex.Thing.Code</a></div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature"><a href="Thalamex.Thing.Manager.html">Thalamex.Thing.Manager</a></div>
+  
+    <div class="summary-synopsis"><p>A loop identifies each <strong>unknown</strong> and <strong>unconnected</strong> operating system
+tty that looks like a serial port by probing it (connecting to it)
+in order to launch stored Firmata code under a supervisor.</p>
+<ul>
+<li>If no probes are active, waits 5 seconds before looping again
+</li>
+<li>If probes are active, waits 10 seconds, then closes any open probe
+</li>
+<li>On receive <code class="inline">firmware_name</code>, closes the probe and saves the name
+</li>
+<li>For each tty identification, lookup matching <code class="inline">firmware_name</code> in database
+</li>
+<li>If code is found in the database for this <code class="inline">firmware_name</code>, start it supervised
+</li>
+<li>Detects <strong>known</strong> devices which have been lost/unplugged and stops them via supervisor
+</li>
+</ul>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature"><a href="Thalamex.Thing.Probe.html">Thalamex.Thing.Probe</a></div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature"><a href="Thalamex.Thing.Runner.html">Thalamex.Thing.Runner</a></div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature"><a href="Thalamex.Thing.Supervisor.html">Thalamex.Thing.Supervisor</a></div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature"><a href="Thalamex.TtyList.html">Thalamex.TtyList</a></div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature"><a href="Thalamex.Worker.html">Thalamex.Worker</a></div>
+  
+</div>
+
+      </div>
+    </section>
+  
+
+  
+
+  
+    <footer class="footer">
+      <p>
+        <span class="line">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.11.2),
+        </span>
+        <span class="line">
+          designed by
+          <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+      </p>
+      <button class="night-mode-toggle" />
+    </footer>
+  </div>
+</section>
+</div>
+  <script src="dist/app-1d1b741c5e.js"></script>
+  </body>
+</html>
+

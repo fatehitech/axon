@@ -1,6 +1,16 @@
 # Thalamex
 
-**TODO: Add description**
+Intended to run on a device connected to microcontrollers via serial port.
+
+Firmata code for each microcontroller is maintained in the [Cortex](https://github.com/fatehitech/cortex).
+
+It connects to Cortex via Erlang's distribution mechanism to fetch code.
+
+It ensures that each microcontroller is identified and code loaded.
+
+**Identification** of each MCU occurs based on the firmware name reported by Firmata.
+
+Firmware name can be set by changing the Arduino sketch filename.
 
 ## Installation
 
