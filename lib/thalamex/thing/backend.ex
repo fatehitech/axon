@@ -1,6 +1,7 @@
 defmodule Thalamex.Thing.Backend do
   def get_code_for(name) do
-    :rpc.call(:"cortex@synapse", Cortex.Thing, :get_code_for, ["Uno.ino"])
+    #:rpc.call(:"cortex@cortex.fatehitech.com", Cortex.Thing, :get_code_for, [name])
+    :rpc.call(:"cortex@synapse", Cortex.Thing, :get_code_for, [name])
   end
 
   def module_name(name) do
