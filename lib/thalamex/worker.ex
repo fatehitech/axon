@@ -10,6 +10,13 @@ defmodule Thalamex.Worker do
     spawn_link(fn ->
       Thalamex.Thing.Manager.loop(manager)
     end)
+    :timer.send_interval(5_000, :connect)
     {:ok, {manager}}
+  end
+
+  def handle_info(:connect, state) do
+    Application.get_env(:thalamex, :cortex)
+    |> Node.connect
+    {:noreply, state}
   end
 end
