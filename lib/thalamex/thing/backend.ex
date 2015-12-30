@@ -1,12 +1,16 @@
 defmodule Thalamex.Thing.Backend do
   def publish(name, message) do
-    Application.get_env(:thalamex, :cortex)
-    |> :rpc.call(Cortex.Thing, :push_message, [name, message])
+    out = Application.get_env(:thalamex, :cortex)
+    |> :rpc.call(Cortex.Thing, :handle_in, [name, message])
+    IO.inspect out
+    out
   end
 
   def get_code_for(name) do
-    Application.get_env(:thalamex, :cortex)
+    out = Application.get_env(:thalamex, :cortex)
     |> :rpc.call(Cortex.Thing, :get_code_for, [name])
+    IO.inspect out
+    out
   end
 
   def get_code_for(name, fun) do
