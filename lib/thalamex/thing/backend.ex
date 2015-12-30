@@ -1,25 +1,26 @@
 defmodule Thalamex.Thing.Backend do
+  def get_code_for(name, fun) do
+    case get_code_for(name) do
+      {:ok, code} -> fun.(code)
+      _ -> nil
+    end
+  end
+
   def get_code_for(name) do
-    #:rpc.call(:"cortex@cortex.fatehitech.com", Cortex.Thing, :get_code_for, [name])
-    :rpc.call(:"cortex@synapse", Cortex.Thing, :get_code_for, [name])
+    Application.get_env(:thalamex, :cortex)
+    |> :rpc.call(Cortex.Thing, :get_code_for, [name])
   end
 
   def module_name(name) do
-    code = get_code_for(name)
-    if code do
+    get_code_for(name, fn(code) ->
       Thalamex.Thing.Code.module_name(name)
-      |> String.to_existing_atom()
-    else
-      nil
-    end
+      |> String.to_atom()
+    end)
   end
 
   def build_module(name) do
-    code = get_code_for(name)
-    if code do
+    get_code_for(name, fn(code) ->
       Thalamex.Thing.Code.to_module(code, name)
-    else
-      nil
-    end
+    end)
   end
 end
