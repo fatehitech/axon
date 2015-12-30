@@ -30,7 +30,7 @@ defmodule Thalamex.Thing.Manager do
   def init(:ok) do
     ttys = []
     scan_pids = []
-    {:ok, sup} = Coordinator.start_link
+    {:ok, sup} = Coordinator.start_link(name: Coordinator)
     {:ok, {ttys, scan_pids, sup}}
   end
 
@@ -43,6 +43,41 @@ defmodule Thalamex.Thing.Manager do
     end
     send(manager, :tock)
     loop(manager)
+  end
+
+  @doc """
+  Used by Cortex to push messages to connected things
+  The name param is that stored in the Cortex db
+  The message can be a tuple or whatever you want
+  to handle in the handle_info function
+
+  Example of calling this from Cortex
+  Node.list()
+  |> List.first()
+  |> :rpc.call(Thalamex.Thing.Manager, :send_thing, ["Metro.ino", :blink])
+  """
+  def send_thing(name, message) do
+    mod_name = name
+    |> Thalamex.Thing.Code.module_name()
+    |> String.to_atom
+    :erlang.whereis(Coordinator)
+    |> Coordinator.send_device(mod_name, message)
+  end
+
+  @doc """
+  Stops and restarts the child process.
+  """
+  def reset_thing(name) do
+    IO.puts "resetting thing #{name}"
+    mod_name = name
+    |> Thalamex.Thing.Code.module_name()
+    |> String.to_atom
+
+    # Recompile
+    Backend.build_module(name)
+
+    :erlang.whereis(Coordinator)
+    |> Coordinator.restart_device(mod_name)
   end
 
   @doc """

@@ -1,14 +1,19 @@
 defmodule Thalamex.Thing.Backend do
-  def get_code_for(name, fun) do
-    case get_code_for(name) do
-      {:ok, code} -> fun.(code)
-      _ -> nil
-    end
+  def publish(name, message) do
+    Application.get_env(:thalamex, :cortex)
+    |> :rpc.call(Cortex.Thing, :push_message, [name, message])
   end
 
   def get_code_for(name) do
     Application.get_env(:thalamex, :cortex)
     |> :rpc.call(Cortex.Thing, :get_code_for, [name])
+  end
+
+  def get_code_for(name, fun) do
+    case get_code_for(name) do
+      {:ok, code} -> fun.(code)
+      _ -> nil
+    end
   end
 
   def module_name(name) do
