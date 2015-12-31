@@ -32,4 +32,12 @@ defmodule Thalamex.Thing.Supervisor do
     |> elem(1)
     |> send(message)
   end
+
+  def call_device(pid, child_id, message) do
+    pid
+    |> Supervisor.which_children()
+    |> Enum.find(fn(child)-> elem(child, 0) == child_id end)
+    |> elem(1)
+    |> GenServer.call(message)
+  end
 end

@@ -64,6 +64,17 @@ defmodule Thalamex.Thing.Manager do
   end
 
   @doc """
+  Like send_thing but uses GenServer.call in order to get a response
+  """
+  def call_thing(name, message) do
+    mod_name = name
+    |> Thalamex.Thing.Code.module_name()
+    |> String.to_atom
+    :erlang.whereis(Coordinator)
+    |> Coordinator.call_device(mod_name, message)
+  end
+
+  @doc """
   Stops and restarts the child process.
   """
   def reset_thing(name) do
