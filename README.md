@@ -16,6 +16,8 @@ Cortex also allows the developer to interface with InfluxDB, defining series and
 
 Firmware name can be set by changing the Arduino sketch filename.
 
+In standalone mode, the name is defined in the `config.exs` file.
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
