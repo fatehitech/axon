@@ -9,6 +9,9 @@ defmodule Thalamex.Thing.Manager do
   * For each tty identification, lookup matching `firmware_name` in database
   * If code is found in the database for this `firmware_name`, start it supervised
   * Detects **known** devices which have been lost/unplugged and stops them via supervisor
+
+  Standalone mode disables all the serial port stuff.
+  It's useful for orchestrating a device that has no attached arduinos.
   """
 
   @disconnected 0

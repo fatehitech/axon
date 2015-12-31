@@ -11,8 +11,19 @@ defmodule Thalamex.Thing.Supervisor do
     supervise(children, strategy: :one_for_one)
   end
 
+  def empty?(pid) do
+    count = pid
+    |> Supervisor.which_children()
+    |> length
+    count === 0
+  end
+
   def start_device(pid, tty_path, module) do
     Supervisor.start_child(pid, worker(module, [tty_path, 57600]))
+  end
+
+  def start_standalone(pid, module) do
+    Supervisor.start_child(pid, worker(module, []))
   end
 
   def stop_device(pid, child_id) do
