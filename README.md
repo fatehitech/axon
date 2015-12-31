@@ -44,7 +44,7 @@ Create a **Thing** in Cortex, e.g. "GarageDoor", then configure your mix app lik
 
 ```elixir
 config :thalamex,
-  cortex: :"cortex@synapse",
+  cortex: :"cortex@example.com",
   standalone: true,
   standalone_name: "GarageDoor"
 ```
@@ -59,7 +59,7 @@ Configure your mix app like so:
 
 ```elixir
 config :thalamex,
-  cortex: :"cortex@synapse"
+  cortex: :"cortex@example.com"
 ```
 
 It's actually simpler.
