@@ -31,3 +31,37 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
         def application do
           [applications: [:thalamex]]
         end
+
+## Configuration
+
+We'll assume Cortex is running and accessible at cortex@example.com
+
+### Standalone Mode
+
+Create a **Thing** in Cortex, e.g. "GarageDoor", then configure your mix app like so:
+
+```elixir
+config :thalamex,
+  cortex: :"cortex@synapse",
+  standalone: true,
+  standalone_name: "GarageDoor"
+```
+
+### Firmata Mode
+
+Create as many **Things** in Cortex ensuring that the name matches the sketch name (do this by renaming StandardFirmata.ino).
+
+For example, you have 2 devices and you have two **Thing** entries, "Plants.ino" and "Solar.ino", and plug them in via a USB powered hub.
+
+Configure your mix app like so:
+
+```elixir
+config :thalamex,
+  cortex: :"cortex@synapse"
+```
+
+It's actually simpler.
+
+## Platform
+
+[Nerves](http://nerves-project.org) on Beaglebone Black or Raspberry Pi makes an excellent platform for this.
