@@ -1,12 +1,16 @@
 # Thalamex
 
-Intended to run on a device connected to microcontrollers via serial port.
+Can be configured in standalone mode or in default mode.
+
+The default mode is such that the device is connected to Firmata devices via serial port.
 
 Firmata code for each microcontroller is maintained in the [Cortex](https://github.com/fatehitech/cortex).
 
-It connects to Cortex via Erlang's distribution mechanism to fetch code.
+The code for Standalone mode also would be in the Cortex.
 
-It ensures that each microcontroller is identified and code loaded.
+It connects to Cortex via Erlang's distribution mechanism to fetch code, make calls, and send messages.
+
+Cortex also allows the developer to interface with InfluxDB, defining series and pushing data to them.
 
 **Identification** of each MCU occurs based on the firmware name reported by Firmata.
 
