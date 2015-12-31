@@ -5,8 +5,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.11.2">
-    <title>Thalamex.Thing.Manager – thalamex v0.0.1</title>
-    <link rel="stylesheet" href="dist/app-feafe9a25b.css" />
+    <title>Axon.Thing.Manager – axon v0.0.1</title>
+    <link rel="stylesheet" href="" />
     <script src="dist/sidebar_items.js"></script>
   </head>
   <body data-type="modules">
@@ -24,7 +24,7 @@
   <a href="api-reference.html" class="sidebar-projectLink">
     <div class="sidebar-projectDetails">
       <h1 class="sidebar-projectName">
-        thalamex
+        axon
       </h1>
       <h2 class="sidebar-projectVersion">
         v0.0.1
@@ -59,8 +59,8 @@
 
 
       <h1>
-        <small class="visible-xs">thalamex v0.0.1</small>
-        Thalamex.Thing.Manager
+        <small class="visible-xs">axon v0.0.1</small>
+        Axon.Thing.Manager
         
         
       </h1>
@@ -84,6 +84,8 @@ in order to launch stored Firmata code under a supervisor.</p>
 <li>Detects <strong>known</strong> devices which have been lost/unplugged and stops them via supervisor
 </li>
 </ul>
+<p>Standalone mode disables all the serial port stuff.
+It’s useful for orchestrating a device that has no attached arduinos.</p>
 
         </section>
       
@@ -104,6 +106,15 @@ in order to launch stored Firmata code under a supervisor.</p>
       <a href="#functions">Functions</a>
     </h2>
     <div class="summary-row">
+  <div class="summary-signature">
+    <a href="#call_thing/2">call_thing(name, message)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Like send_thing but uses GenServer.call in order to get a response</p>
+</div>
+  
+</div>
+<div class="summary-row">
   <div class="summary-signature">
     <a href="#disconnect/3">disconnect(ident_pids, tty_path, found_callback)</a>
   </div>
@@ -183,6 +194,27 @@ that were in the connected state having been removed</p>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="#reset_thing/1">reset_thing(name)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Stops and restarts the child process</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#send_thing/2">send_thing(name, message)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Used by Cortex to push messages to connected things
+The name param is that stored in the Cortex db
+The message can be a tuple or whatever you want
+to handle in the handle_info function</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#start_link/0">start_link()</a>
   </div>
   
@@ -219,7 +251,21 @@ while converting to desired tuple structure</p>
             </a>
             Functions
           </h1>
-          <div class="detail" id="disconnect/3">
+          <div class="detail" id="call_thing/2">
+  <div class="detail-header">
+    <a href="#call_thing/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">call_thing(name, message)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Like send_thing but uses GenServer.call in order to get a response</p>
+
+  </section>
+</div>
+<div class="detail" id="disconnect/3">
   <div class="detail-header">
     <a href="#disconnect/3" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
@@ -339,6 +385,41 @@ that were in the connected state having been removed</p>
 
   </section>
 </div>
+<div class="detail" id="reset_thing/1">
+  <div class="detail-header">
+    <a href="#reset_thing/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">reset_thing(name)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Stops and restarts the child process.</p>
+
+  </section>
+</div>
+<div class="detail" id="send_thing/2">
+  <div class="detail-header">
+    <a href="#send_thing/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">send_thing(name, message)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Used by Cortex to push messages to connected things
+The name param is that stored in the Cortex db
+The message can be a tuple or whatever you want
+to handle in the handle_info function</p>
+<p>Example of calling this from Cortex
+Node.list()
+|&gt; List.first()
+|&gt; :rpc.call(Axon.Thing.Manager, :send_thing, ["Metro.ino", :blink])</p>
+
+  </section>
+</div>
 <div class="detail" id="start_link/0">
   <div class="detail-header">
     <a href="#start_link/0" class="detail-link" title="Link to this function">
@@ -391,7 +472,7 @@ while converting to desired tuple structure</p>
   </div>
 </section>
 </div>
-  <script src="dist/app-1d1b741c5e.js"></script>
+  <script src=""></script>
   </body>
 </html>
 

@@ -1,4 +1,4 @@
-defmodule Thalamex.Thing.Manager do
+defmodule Axon.Thing.Manager do
   @moduledoc """
   A loop identifies each **unknown** and **unconnected** operating system
   tty that looks like a serial port by probing it (connecting to it)
@@ -20,10 +20,10 @@ defmodule Thalamex.Thing.Manager do
 
   use GenServer
 
-  alias Thalamex.Thing.Probe, as: Probe
-  alias Thalamex.Thing.Supervisor, as: Coordinator
-  alias Thalamex.TtyList, as: SerialPorts
-  alias Thalamex.Thing.Backend, as: Backend
+  alias Axon.Thing.Probe, as: Probe
+  alias Axon.Thing.Supervisor, as: Coordinator
+  alias Axon.TtyList, as: SerialPorts
+  alias Axon.Thing.Backend, as: Backend
 
   def start_link do
     GenServer.start_link(__MODULE__, :ok, name: __MODULE__)
@@ -56,11 +56,11 @@ defmodule Thalamex.Thing.Manager do
   Example of calling this from Cortex
   Node.list()
   |> List.first()
-  |> :rpc.call(Thalamex.Thing.Manager, :send_thing, ["Metro.ino", :blink])
+  |> :rpc.call(Axon.Thing.Manager, :send_thing, ["Metro.ino", :blink])
   """
   def send_thing(name, message) do
     mod_name = name
-    |> Thalamex.Thing.Code.module_name()
+    |> Axon.Thing.Code.module_name()
     |> String.to_atom
     :erlang.whereis(Coordinator)
     |> Coordinator.send_device(mod_name, message)
@@ -71,7 +71,7 @@ defmodule Thalamex.Thing.Manager do
   """
   def call_thing(name, message) do
     mod_name = name
-    |> Thalamex.Thing.Code.module_name()
+    |> Axon.Thing.Code.module_name()
     |> String.to_atom
     :erlang.whereis(Coordinator)
     |> Coordinator.call_device(mod_name, message)
@@ -83,7 +83,7 @@ defmodule Thalamex.Thing.Manager do
   def reset_thing(name) do
     IO.puts "resetting thing #{name}"
     mod_name = name
-    |> Thalamex.Thing.Code.module_name()
+    |> Axon.Thing.Code.module_name()
     |> String.to_atom
 
     # Recompile

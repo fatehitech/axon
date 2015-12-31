@@ -1,24 +1,24 @@
-defmodule Thalamex.Worker do
+defmodule Axon.Worker do
   use GenServer
-  alias Thalamex.Thing.Supervisor, as: Coordinator
-  alias Thalamex.Thing.Backend, as: Backend
+  alias Axon.Thing.Supervisor, as: Coordinator
+  alias Axon.Thing.Backend, as: Backend
 
-  @cortex Application.get_env(:thalamex, :cortex)
-  @standalone Application.get_env(:thalamex, :standalone, false)
-  @standalone_name Application.get_env(:thalamex, :standalone_name)
+  @cortex Application.get_env(:axon, :cortex)
+  @standalone Application.get_env(:axon, :standalone, false)
+  @standalone_name Application.get_env(:axon, :standalone_name)
 
   def start_link do
     GenServer.start_link(__MODULE__, :ok, name: __MODULE__)
   end
 
   def init(:ok) do
-    {:ok, manager} = Thalamex.Thing.Manager.start_link
+    {:ok, manager} = Axon.Thing.Manager.start_link
 
     if @standalone do
       send(self, :start_standalone)
     else
       spawn_link(fn ->
-        Thalamex.Thing.Manager.loop(manager)
+        Axon.Thing.Manager.loop(manager)
       end)
     end
 

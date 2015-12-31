@@ -1,4 +1,4 @@
-defmodule Thalamex.Thing.Probe do
+defmodule Axon.Thing.Probe do
   use GenServer
   require Serial
   use Firmata.Protocol.Modes

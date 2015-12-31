@@ -1,4 +1,4 @@
-defmodule Thalamex do
+defmodule Axon do
   use Application
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
@@ -8,12 +8,12 @@ defmodule Thalamex do
 
     children = [
       # Define workers and child supervisors to be supervised
-      worker(Thalamex.Worker, []),
+      worker(Axon.Worker, []),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: Thalamex.Supervisor]
+    opts = [strategy: :one_for_one, name: Axon.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end

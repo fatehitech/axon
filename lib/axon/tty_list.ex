@@ -1,4 +1,4 @@
-defmodule Thalamex.TtyList do
+defmodule Axon.TtyList do
   def get do
     File.ls!("/dev")
     |> Enum.map(fn(name) -> "/dev/"<>name end)

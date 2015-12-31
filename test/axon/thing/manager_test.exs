@@ -1,6 +1,6 @@
-defmodule Thalamex.Thing.ManagerTest do
+defmodule Axon.Thing.ManagerTest do
   use ExUnit.Case
-  import Thalamex.Thing.Manager
+  import Axon.Thing.Manager
 
   test "update_tty_list/2 makes correct tty list when seen nothing yet" do
     sys_tty = ["/dev/ttyACM0", "/dev/ttyACM1"]

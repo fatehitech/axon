@@ -1,4 +1,4 @@
-defmodule Thalamex.Thing.Code do
+defmodule Axon.Thing.Code do
   def module_name(name) do
     basename =
       name

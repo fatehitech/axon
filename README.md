@@ -1,4 +1,4 @@
-# Thalamex
+# Axon
 
 Can be configured in standalone mode or in default mode.
 
@@ -22,16 +22,16 @@ In standalone mode, the name is defined in the `config.exs` file.
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
 
-  1. Add thalamex to your list of dependencies in `mix.exs`:
+  1. Add axon to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:thalamex, "~> 0.0.1"}]
+          [{:axon, "~> 0.0.1"}]
         end
 
-  2. Ensure thalamex is started before your application:
+  2. Ensure axon is started before your application:
 
         def application do
-          [applications: [:thalamex]]
+          [applications: [:axon]]
         end
 
 ## Configuration
@@ -43,7 +43,7 @@ We'll assume Cortex is running and accessible at cortex@example.com
 Create a **Thing** in Cortex, e.g. "GarageDoor", then configure your mix app like so:
 
 ```elixir
-config :thalamex,
+config :axon,
   cortex: :"cortex@example.com",
   standalone: true,
   standalone_name: "GarageDoor"
@@ -58,7 +58,7 @@ For example, you have 2 devices and you have two **Thing** entries, "Plants.ino"
 Configure your mix app like so:
 
 ```elixir
-config :thalamex,
+config :axon,
   cortex: :"cortex@example.com"
 ```
 

@@ -1,6 +1,6 @@
-defmodule Thalamex.Thing.Supervisor do
+defmodule Axon.Thing.Supervisor do
   use Supervisor
-  alias Thalamex.Thing.Backend, as: Backend
+  alias Axon.Thing.Backend, as: Backend
 
   def start_link(opts \\ []) do
     Supervisor.start_link(__MODULE__, [], opts)
